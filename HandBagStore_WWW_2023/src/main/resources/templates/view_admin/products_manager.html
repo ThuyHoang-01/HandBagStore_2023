@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${pageTitle}"></title>
+  <link rel="stylesheet" href="/css_admin/__base.css">
+  <script src="/script_customer/bootstrap.min.js"></script>
+  <script src="/script_customer/popper.min.js"></script>
+  <script src="/script_customer/jquery-3.6.0.min.js"></script>
+  
+</head>
+<body class="bg-[#f9fafb]">
+
+<div class="relative flex flex-row justify-between items-start">
+  <!--  START SIDEBAR-->
+  <aside class="w-64 flex-shrink-0 sticky top-0 left-0 px-2 h-screen z-10 bg-white border-r border-slate-200">
+    <div xmlns:th="http://www.thymeleaf.org/" class="h-16 w-full flex flex-row justify-start items-center">
+      <figure class="w-16 h-16 overflow-hidden">
+        <img th:src="@{/imgs/logo.png}"  class="w-full h-full object-cover rounded-full">
+      </figure>
+      <span class="font-bold text-lg">
+                    TUIS G16
+                </span>
+    </div>
+    <div class="w-full flex flex-col justify-start items-center">
+      <a href="/admin/all" class="option">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+          <path d="M22 8a.76.76 0 0 0 0-.21v-.08a.77.77 0 0 0-.07-.16.35.35 0 0 0-.05-.08l-.1-.13-.08-.06-.12-.09-9-5a1 1 0 0 0-1 0l-9 5-.09.07-.11.08a.41.41 0 0 0-.07.11.39.39 0 0 0-.08.1.59.59 0 0 0-.06.14.3.3 0 0 0 0 .1A.76.76 0 0 0 2 8v8a1 1 0 0 0 .52.87l9 5a.75.75 0 0 0 .13.06h.1a1.06 1.06 0 0 0 .5 0h.1l.14-.06 9-5A1 1 0 0 0 22 16V8zm-10 3.87L5.06 8l2.76-1.52 6.83 3.9zm0-7.72L18.94 8 16.7 9.25 9.87 5.34zM4 9.7l7 3.92v5.68l-7-3.89zm9 9.6v-5.68l3-1.68V15l2-1v-3.18l2-1.11v5.7z"></path>
+        </svg>
+        <span class="text-black">QL Đơn hàng</span>
+      </a>
+      <a href="/admin/customers/all" class="option ">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path>
+        </svg>
+        <span>QL Khách hàng</span>
+      </a>
+      <a href="/admin/products/all" class="option bg-slate-200">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+          <path d="M5 22h14c1.103 0 2-.897 2-2V9a1 1 0 0 0-1-1h-3V7c0-2.757-2.243-5-5-5S7 4.243 7 7v1H4a1 1 0 0 0-1 1v11c0 1.103.897 2 2 2zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v1H9V7zm-4 3h2v2h2v-2h6v2h2v-2h2l.002 10H5V10z"></path>
+        </svg>
+        <span class="text-black">QL Sản phẩm</span>
+      </a>
+    </div>
+  </aside>
+  <!--  END SIDEBAR-->
+
+  <div class="w-9/12 relative flex-1 flex flex-col justify-start items-center">
+    <!--  START HEADER-->
+    <header class="w-full h-16 shadow-md z-30 bg-white flex-shrink-0 sticky top-0 right-0" th:insert="view_admin/header.html"></header>
+    <!--  END HEADER-->
+
+    <main class="relative w-full px-5 py-3 mt-2 h-screen flex-1 flex flex-col justify-start items-start">
+      <div class="w-full">
+        <p class="font-medium text-2xl">
+          Quản lí sản phẩm
+        </p>
+      </div>
+      <div class="w-full mt-6 bg-transparent flex flex-row justify-start items-start">
+        <div class="w-72 mr-5 h-20 border border-slate-300 shadow-sm rounded-md px-3 py-3 bg-white flex flex-row justify-between items-center">
+          <div class="w-1/4 h-full flex-shrink-0 flex flex-col justify-center items-center">
+            <figure class="w-11 h-11 rounded-full bg-teal-600 flex flex-row justify-center items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-gray-100">
+                <path d="M10 3H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM9 9H5V5h4v4zm11-6h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zm-1 6h-4V5h4v4zm-9 4H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1zm-1 6H5v-4h4v4zm8-6c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4zm0 6c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2z"></path>
+              </svg>
+            </figure>
+          </div>
+          <div class="ml-4 h-full flex-1 flex flex-col justify-between items-start">
+            <p class="text-slate-900">
+              Tổng số danh mục
+            </p>
+            <p class="text-xl font-medium" th:text="${bagCateTotalCate}">
+            </p>
+          </div>
+        </div>
+        <div class="w-72 mr-5 h-20 border border-slate-300 shadow-sm rounded-md px-3 py-3 bg-white flex flex-row justify-between items-center">
+          <div class="w-1/4 h-full flex-shrink-0 flex flex-col justify-center items-center">
+            <figure class="w-11 h-11 rounded-full bg-blue-500 flex flex-row justify-center items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-gray-100">
+                <path d="M13.337 9h-2.838v3h2.838a1.501 1.501 0 1 0 0-3z"></path><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1.337 12h-2.838v3H8.501V7h4.837a3.498 3.498 0 0 1 3.499 3.499 3.499 3.499 0 0 1-3.5 3.501z"></path>
+              </svg>
+            </figure>
+          </div>
+          <div class="ml-4 h-full flex-1 flex flex-col justify-between items-start">
+            <p class="text-slate-900">
+              Tổng số sản phẩm
+            </p>
+            <p class="text-xl font-medium" th:text="${bagCateTotal}">
+            </p>
+          </div>
+        </div>
+        <div class="w-72 mr-5 h-20 border border-slate-300 shadow-sm rounded-md px-3 py-3 bg-white flex flex-row justify-between items-center">
+          <div class="w-1/4 h-full flex-shrink-0 flex flex-col justify-center items-center">
+            <figure class="w-11 h-11 rounded-full bg-green-500 flex flex-row justify-center items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-gray-100">
+                <path d="M3 16h2v5H3zm4-3h2v8H7zm4-3h2v11h-2zm4-3h2v14h-2zm4-3h2v17h-2z"></path>
+              </svg>
+            </figure>
+          </div>
+          <div class="ml-4 h-full flex-1 flex flex-col justify-between items-start">
+            <p class="text-slate-900">
+              Sản phẩm còn hàng
+            </p>
+            <p class="text-xl font-medium" th:text="${bagCateInStock}">
+            </p>
+          </div>
+        </div>
+        <div class="w-72 mr-5 h-20 border border-slate-300 shadow-sm rounded-md px-3 py-3 bg-white flex flex-row justify-between items-center">
+          <div class="w-1/4 h-full flex-shrink-0 flex flex-col justify-center items-center">
+            <figure class="w-11 h-11 rounded-full bg-red-500 flex flex-row justify-center items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-gray-100">
+                <path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path>
+              </svg>
+            </figure>
+          </div>
+          <div class="ml-4 h-full flex-1 flex flex-col justify-between items-start">
+            <p class="text-slate-900">
+              Sản phẩm hết hàng
+            </p>
+            <p class="text-xl font-medium" th:text="${bagCateOutOfStock}">
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="w-full mt-6 flex flex-row justify-between items-center">
+        <div class="flex flex-row justify-start items-center">
+          <button class="add-category px-3 py-3 flex flex-row justify-start items-center rounded-md bg-blue-600 transition-all hover:bg-blue-700">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-white">
+              <path d="m21.484 11.125-9.022-5a1 1 0 0 0-.968-.001l-8.978 4.96a1 1 0 0 0-.003 1.749l9.022 5.04a.995.995 0 0 0 .973.001l8.978-5a1 1 0 0 0-.002-1.749zm-9.461 4.73-6.964-3.89 6.917-3.822 6.964 3.859-6.917 3.853z"></path><path d="M12 22a.994.994 0 0 0 .485-.126l9-5-.971-1.748L12 19.856l-8.515-4.73-.971 1.748 9 5A1 1 0 0 0 12 22zm8-20h-2v2h-2v2h2v2h2V6h2V4h-2z"></path>
+            </svg>
+            <span class="ml-3 text-gray-100">
+                                Thêm danh mục mới
+                            </span>
+          </button>
+        </div>
+        <div class="relative">
+          <div>
+            <input type="search" placeholder="Tìm theo mã danh mục hoặc tên danh mục"
+                   class="order-search-input w-96 rounded-md text-sm outline-none pl-10 pr-2 py-3 border border-slate-400 transition-all focus:border-blue-600">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);"
+                 class="absolute top-1/2 left-2 transform -translate-y-1/2">
+              <path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"></path>
+            </svg>
+          </div>
+          <div class="search-order-suggesstion-container absolute right-0 opacity-0 invisible z-50 bg-white top-full mt-1 w-[700px] border border-slate-300 shadow-md rounded-md px-1 py-1">
+
+          </div>
+        </div>
+      </div>
+      <div class="w-full max-h-[400px] overflow-auto mt-6">
+        <table class="w-full rounded-md relative bg-white">
+          <tr class="sticky top-0 left-0 bg-slate-200 border-b border-slate-300 text-center font-medium">
+            <td class="w-1/12 rounded-tl-md">Hành động</td>
+            <td class="w-1/12">Mã DM</td>
+            <td class="w-3/12">Tên DM</td>
+            <td class="w-2/12">Ngày thêm</td>
+            <td class="w-2/12">Size</td>
+            <td class="w-1/12 py-3">Cân nặng</td>
+            <td class="w-2/12">Hãng sản xuất</td>
+          </tr>
+          <th:block th:each="product: ${listProducts}">
+          <tr class="border-b border-slate-300 text-center">
+            <td class="h-full pt-5 flex flex-row justify-center items-center">
+              <a href="" class="mr-2 px-2 py-2 rounded-md bg-blue-500 text-white transition-all hover:bg-blue-600">
+                Xem
+              </a>
+            </td>
+            <td th:text="${product.bagCategoryId}"></td>
+            <td class="py-3" th:text="${product.name}"></td>
+            <td th:text="${#temporals.format(product.importDate, 'dd-MM-yyyy')}">12-02-2021</td>
+            <td th:text="${product.size}"></td>
+            <td th:text="${product.weight} + ' kg'"></td>
+            <td th:text="${product.brand.name}"></td>
+          </tr>
+		  </th:block>	
+        </table>
+      </div>
+      <form action="/admin/products/save" enctype="multipart/form-data" method="POST">
+      <div class="overlay transition-all duration-200 fixed top-0 left-0 w-screen h-screen bg-slate-500 opacity-0 invisible flex flex-row justify-center items-center">
+      </div>
+      <div class="category-container transition-all duration-200 fixed top-1/2 left-full opacity-0 invisible transform -translate-x-1/2 -translate-y-1/2 w-3/4 max-h-screen px-5 py-5 rounded-md border bg-white border-slate-400 shadow-md overflow-y-scroll">
+        <div class="w-full bg-white">
+          <div class="w-full flex flex-row justify-end items-center">
+            <button type="button" class="close-category-container flex flex-row justify-center items-center w-8 h-8 rounded-full bg-slate-400 transition-all duration-200 hover:bg-red-600">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-white">
+                <path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path>
+              </svg>
+            </button>
+          </div>
+          
+          <div class="add-wrapper w-full h-full flex flex-row justify-between items-center">
+            <div class="w-3/4 px-3 flex flex-col justify-start items-start">
+              <div class="add-comp comp-prdName">
+                <span class="add-comp-title add-comp-prdName-title">Tên danh mục</span>
+                <input type="text" placeholder="VD: Túi đeo chéo Gucci beng 2022" class="add-comp-input add-comp-prdName-input" name="categoryName" id="txtName">
+                <span class="add-comp-notify add-comp-prdName-notify text-red-500" id="tbName">(*)</span>
+              </div>
+              <div class="add-comp comp-brand">
+                <span class="add-comp-title add-comp-brand-title">Hãng sản xuất</span>
+                <input type="text" placeholder="VD: Gucci" class="add-comp-input add-comp-brand-input" name="brandName" id="txtBrand">
+                <span class="add-comp-notify add-comp-brand-notify text-red-500" id="tbBrand">(*)</span>
+              </div>
+              <div class="add-comp comp-size">
+                <span class="add-comp-title add-comp-size-title">Kích thước</span>
+                <input type="text" placeholder="VD: 12cm * 20cm * 3cm" class="add-comp-input add-comp-size-input" name="size" id="txtSize">
+                <span class="add-comp-notify add-comp-size-notify text-red-500" id="tbSize">(*)</span>
+              </div>
+              <div class="add-comp comp-weight">
+                <span class="add-comp-title add-comp-weight-title">Cân nặng</span>
+                <input type="text" placeholder="VD: 2kg" class="add-comp-input add-comp-weight-input" name="weight" id="txtWeight">
+                <span class="add-comp-notify add-comp-weight-notify text-red-500" id="tbWeight">(*)</span>
+              </div>
+            </div>
+            <div class="w-1/4 h-80 px-3">
+              <div class="relative w-full h-full">
+                <figure class="w-full h-full border border-dashed border-slate-500 rounded-sm">
+                  <img src="" alt="" id="prdCoverPhoto"
+                       class="w-full h-full object-cover">
+                </figure>
+                <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-gray-200 border border-slate-500 flex flex-row justify-center items-center">
+                  <input type="file" class="hidden" id="choosePrdCoverPhoto" name="coverPhoto" accept=".png,.jpg">
+                  <label for="choosePrdCoverPhoto" title="Chọn ảnh bìa của danh mục" class="cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);">
+                      <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                    </svg>
+                  </label>
+                </div>
+                <div class="add-comp-notify add-comp-weight-notify text-red-500 mt-5 text-center" id="tbPhoto">(*)</div>
+              </div>
+            </div>
+          </div>
+          <div class="w-full px-3 flex flex-col justify-start items-start">
+            <div class="add-comp comp-shortDesc">
+              <span class="add-comp-title add-comp-shortDesc-title">Mô tả ngắn</span>
+              <input type="text" placeholder="VD: Sản phẩm được làm từ da nguyên đai" class="add-comp-input add-comp-shortDesc-input" name="shortDescription" id="txtShortDes">
+              <span class="add-comp-notify add-comp-shortDesc-notify text-red-500" id="tbShortDes">(*)</span>
+            </div>
+            <div class="add-comp comp-longDesc">
+              <span class="add-comp-title add-comp-longDesc-title">Mô tả chi tiết</span>
+              <textarea name="longDescription" id="txtLongDes" cols="30" rows="3" class="add-comp-input add-comp-longDesc-input"></textarea>
+              <span class="add-comp-notify add-comp-longDesc-notify text-red-500" id="tbLongDes">(*)</span>
+            </div>
+          </div>
+          <div class="px-3 mb-3">
+            <button type="button" class="add-prd-btn flex flex-row justify-center items-center px-5 py-3 bg-purple-600 rounded-md transition-all text-white hover:bg-purple-700">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-white">
+                <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+              </svg>
+              <span class="font-medium ml-3">
+                                    Thêm sản phẩm vào danh mục
+                                </span>
+            </button>
+          </div>
+          <div class="prd-container">
+
+          </div>
+          <div class="w-full mt-3">
+            <button type="submit" class="block w-full py-5 text-center text-white rounded-md bg-blue-600 font-medium hover:bg-blue-700" id="btnAdd">
+              Thêm danh mục vào cơ sở dữ liệu
+            </button>
+          </div>
+        </div>
+      </div>
+      </form>
+    </main>
+  </div>
+</div>
+
+<!-- SCRIPT FOR MAKING ANIMATION OF HEADER AND FOOTER -->
+<script src="/script_admin/header.js"></script>
+<script src="/script_admin/products_manager.js"></script>
+<script>
+        $(document).ready(function(){
+            function checkName() {
+                let x = $("#txtName").val()
+                if (x.trim()===''){
+                    $("#tbName").html("Tên danh mục không được để trống");
+                    return false;
+                }
+                $("#tbName").html("(*)");
+                return true;
+            }
+            function checkBrand() {
+                let x = $("#txtBrand").val()
+                if (x.trim()==='') {
+                    $("#tbBrand").html("Hãng sản xuất không được để trống")
+                    return false
+                }
+                $("#tbBrand").html("(*)")
+                return true
+            }
+            function checkSize() {
+                let x = $("#txtSize").val()
+                if (x.trim()===''){
+                    $("#tbSize").html("Kích thước không được để trống");
+                    return false;
+                }
+                $("#tbSize").html("(*)");
+                return true;
+            }
+            function checkWeight() {
+                let x = $("#txtWeight").val()
+                let regex = /^(\d)+(.)?(\d)*$/
+                let regex2 = /^(0)+(.)?(0)*$/
+                if (x.trim()===''){
+                    $("#tbWeight").html("Cân nặng không được để trống");
+                    return false;
+                }
+                if (!regex.test(x) || regex2.test(x)) {
+                    $("#tbWeight").html("Cân nặng phải nhập số lớn hơn 0")
+                    return false
+                }
+                $("#tbWeight").html("(*)");
+                return true;
+            }
+            function checkShortDes() {
+                let x = $("#txtShortDes").val()
+                if (x.trim()===''){
+                    $("#tbShortDes").html("Mô tả ngắn không được để trống");
+                    return false;
+                }
+                $("#tbShortDes").html("(*)");
+                return true;
+            }
+            function checkLongDes() {
+                let x = $("#txtLongDes").val()
+                if (x.trim()===''){
+                    $("#tbLongDes").html("Mô tả chi tiết không được để trống");
+                    return false;
+                }
+                $("#tbLongDes").html("(*)");
+                return true;
+            }
+            function checkPhoto() {
+                let x = $("#choosePrdCoverPhoto").val()
+                if (x.trim().files.length == 0){
+                    $("#tbPhoto").html("Ảnh bìa không được để trống");
+                    return false;
+                }
+                $("#tbPhoto").html("(*)");
+                return true;
+            }
+            /*
+            function checkColor() {
+                let x = $("#txtColor").val()
+                console.log(x)
+                if (x.trim()==''){
+                    $("#tbColor").html("Màu sắc không được để trống");
+                    return false;
+                }
+                $("#tbColor").html("(*)");
+                return true;
+            }
+            function checkQty() {
+                let x = $("#txtQty").val()
+                if (x.trim()===''){
+                    $("#tbQty").html("Số lượng không được để trống");
+                    return false;
+                }
+                $("#tbQty").html("(*)");
+                return true;
+            }
+            function checkPrice() {
+                let x = $("#txtPrice").val()
+                if (x.trim()===''){
+                    $("#tbPrice").html("Giá không được để trống");
+                    return false;
+                }
+                $("#tbPrice").html("(*)");
+                return true;
+            }
+            function save() {
+                if (!checkName() || !checkBrand() || !checkSize()
+                		|| !checkWeight() || !checkShortDes() || !checkLongDes()
+                		|| !checkPhoto() || !checkColor() || !checkQty()
+                		|| !checkPrice()) {
+                    alert("Vui lòng nhập đủ thông tin!!")
+                    return false
+                }
+                return true
+            }
+            $("#txtName").blur(checkName)
+            $("#txtBrand").blur(checkBrand)
+            $("#txtSize").blur(checkSize)
+            $("#txtWeight").blur(checkWeight)
+            $("#txtShortDes").blur(checkShortDes)
+            $("#txtLongDes").blur(checkLongDes)
+            $("#choosePrdCoverPhoto").blur(checkPhoto)
+            $("#txtColor").blur(checkColor)
+            $("#txtQty").blur(checkQty)
+            $("#txtPrice").blur(checkPrice)
+            $("#btnAdd").click(save)
+        }) */
+  </script>
+</body>
+</html>

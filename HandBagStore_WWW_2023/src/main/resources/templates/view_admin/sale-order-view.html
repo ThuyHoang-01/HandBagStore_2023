@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}"></title>
+    <link rel="stylesheet" href="/css_admin/__base.css">
+</head>
+<body class="bg-[#f9fafb]">
+
+<div class="relative flex flex-row justify-between items-start">
+    <!--  START SIDEBAR-->
+    <aside class="w-64 flex-shrink-0 sticky top-0 left-0 px-2 h-screen z-10 bg-white border-r border-slate-200">
+        <div xmlns:th="http://www.thymeleaf.org/" class="h-16 w-full flex flex-row justify-start items-center">
+            <figure class="w-16 h-16 overflow-hidden">
+                <img th:src="@{/imgs/logo.png}"  class="w-full h-full object-cover rounded-full">
+            </figure>
+            <span class="font-bold text-lg">
+                    TUIS G16
+                </span>
+        </div>
+        <div class="w-full flex flex-col justify-start items-center">
+            <a href="/admin/all" class="option">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                    <path d="M22 8a.76.76 0 0 0 0-.21v-.08a.77.77 0 0 0-.07-.16.35.35 0 0 0-.05-.08l-.1-.13-.08-.06-.12-.09-9-5a1 1 0 0 0-1 0l-9 5-.09.07-.11.08a.41.41 0 0 0-.07.11.39.39 0 0 0-.08.1.59.59 0 0 0-.06.14.3.3 0 0 0 0 .1A.76.76 0 0 0 2 8v8a1 1 0 0 0 .52.87l9 5a.75.75 0 0 0 .13.06h.1a1.06 1.06 0 0 0 .5 0h.1l.14-.06 9-5A1 1 0 0 0 22 16V8zm-10 3.87L5.06 8l2.76-1.52 6.83 3.9zm0-7.72L18.94 8 16.7 9.25 9.87 5.34zM4 9.7l7 3.92v5.68l-7-3.89zm9 9.6v-5.68l3-1.68V15l2-1v-3.18l2-1.11v5.7z"></path>
+                </svg>
+                <span class="text-black">QL Đơn hàng</span>
+            </a>
+            <a href="/admin/customers/all" class="option ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path>
+                </svg>
+                <span>QL Khách hàng</span>
+            </a>
+            <a href="/admin/products/all" class="option bg-slate-200">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                    <path d="M5 22h14c1.103 0 2-.897 2-2V9a1 1 0 0 0-1-1h-3V7c0-2.757-2.243-5-5-5S7 4.243 7 7v1H4a1 1 0 0 0-1 1v11c0 1.103.897 2 2 2zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v1H9V7zm-4 3h2v2h2v-2h6v2h2v-2h2l.002 10H5V10z"></path>
+                </svg>
+                <span class="text-black">QL Sản phẩm</span>
+            </a>
+        </div>
+    </aside>
+    <!--  END SIDEBAR-->
+
+    <div class="w-9/12 relative flex-1 flex flex-col justify-start items-center">
+        <!--  START HEADER-->
+        <header class="w-full h-16 shadow-md z-30 bg-white flex-shrink-0 sticky top-0 right-0" th:insert="view_admin/header.html"></header>
+        <!--  END HEADER-->
+
+        <main class="relative w-full px-5 py-3 mt-2 h-screen flex-1 flex flex-col justify-start items-start">
+            <div class="w-full flex flex-row justify-between items-center">
+                <p class="font-medium text-2xl">
+                    Thông tin đơn hàng
+                </p>
+                <div class="flex flex-row justify-end items-center">
+                    <a th:href="@{/admin/confirmProcessedOrders/{saleOrderId}(saleOrderId=${order.saleOrderId})}" class="order-detail-button btn-ready" th:if="${order.status} == 1">
+                        Sẵn sàng vận chuyển
+                    </a>
+                    <a th:href="@{/admin/cancelOrders/{saleOrderId}(saleOrderId=${order.saleOrderId})}" class="order-detail-button btn-cancel" th:if="${order.status} == 1">
+                        Huỷ đơn hàng này
+                    </a>
+                    <button onclick="history.back()" class="px-5 py-3 rounded-md transition-all duration-200 text-white bg-slate-500 hover:bg-slate-600">
+                        Thoát
+                    </button>
+                </div>
+            </div>
+            <div class="mt-6 w-full px-3 py-3 rounded-md bg-white border border-slate-300 shadow-lg">
+                <div class="w-full px-3 flex flex-row justify-between items-center">
+                    <div class="overrall-info-wrapper">
+                        <span class="overrall-info-wrapper-title">Mã đơn</span>
+                        <input type="text" class="overrall-info-input" th:value="${order.saleOrderId}">
+                    </div>
+                    <div class="overrall-info-wrapper">
+                        <span class="overrall-info-wrapper-title">Họ tên</span>
+                        <input type="text" class="overrall-info-input" th:value="${order.customer.firstName} + ' ' + ${order.customer.lastName}">
+                    </div>
+                    <div class="overrall-info-wrapper">
+                        <span class="overrall-info-wrapper-title">Số điện thoại</span>
+                        <input type="text" class="overrall-info-input" th:value="${order.phone}">
+                    </div>
+                    <div class="overrall-info-wrapper">
+                        <span class="overrall-info-wrapper-title">Tổng giá trị đơn</span>
+                        <input type="text" class="overrall-info-input font-medium text-red-600" th:value="${order.totalDue}">
+                    </div>
+                </div>
+                <div class="w-full flex flex-col">
+                    <div class="w-full px-3">
+                        <div class="w-full px-3 py-3 flex flex-col justify-start items-start">
+                            <span class="mb-1">Địa chỉ giao hàng</span>
+                            <input type="text" class="overrall-info-input w-full" th:value="${order.address}">
+                        </div>
+                    </div>
+                    <div class="w-full px-3">
+                        <div class="w-full px-3 py-3 flex flex-col justify-start items-start">
+                            <span class="mb-1">Ghi chú của khách hàng</span>
+                            <input type="text" class="overrall-info-input w-full" th:value="${order.comment}">
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full px-6 py-3">
+                    <table class="w-full max-h-96 bg-white relative">
+                        <tr class="sticky top-0 left-0 bg-slate-200 font-medium text-center">
+                            <td class="w-2/12">Mã sản phẩm</td>
+                            <td class="w-4/12 py-3">Tên sản phẩm</td>
+                            <td class="w-2/12">Đơn giá</td>
+                            <td class="w-2/12">Số lượng</td>
+                            <td class="w-2/12">Tổng tiền</td>
+                        </tr>
+                        <th:block th:each="detail: ${listOrderDetails}">
+                        <tr class="text-center">
+                            <td class="w-2/12 font-medium" th:text="${detail.bag.bagId}"></td>
+                            <td class="w-4/12 py-3" th:text="${detail.bag.bagCategory.name}"></td>
+                            <td class="w-2/12">
+                                <span th:text="${detail.unitPrice}"></span>
+                                <span>&#8363</span>
+                            </td>
+                            <td class="w-2/12" th:text="${detail.orderQty}"></td>
+                            <td class="w-w/12 text-red-600 font-medium">
+                                <span th:text="${@priceConvert.chuyenMoney(detail.orderQty * detail.unitPrice)}"></span>
+                                <span>&#8363</span>
+                            </td>
+                        </tr>
+                        <th:block>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- SCRIPT FOR MAKING ANIMATION OF HEADER AND FOOTER -->
+<script src="/script_admin/header.js"></script>
+</body>
+</html>

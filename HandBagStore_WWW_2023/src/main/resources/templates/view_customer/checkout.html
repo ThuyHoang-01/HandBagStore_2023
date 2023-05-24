@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}"></title>
+    <link rel="stylesheet" href="/css_customer/__base.css">
+    <script src="/script_customer/bootstrap.min.js"></script>
+    <script src="/script_customer/popper.min.js"></script>
+    <script src="/script_customer/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            function checkHoTen() {
+                let x = $("#txtHoTen").val()
+                if (x.trim()===''){
+                    $("#tbHoTen").html("Họ tên không được để trống");
+                    return false;
+                }
+                $("#tbHoTen").html("(*)");
+                return true;
+            }
+            function checkSDT() {
+                let x = $("#txtSDT").val()
+                let regex = /^(0)\d{9}$/
+                if (x.trim()==='') {
+                    $("#tbSDT").html("Số điện thoại không được để trống")
+                    return false
+                }
+                if (!regex.test(x)) {
+                    $("#tbSDT").html("Số điện thọai phải 10 ký số bắt đầu bắt số 0")
+                    return false
+                }
+                $("#tbSDT").html("(*)")
+                return true
+            }
+            function checkDiaChi() {
+                let x = $("#txtDiaChi").val()
+                if (x.trim()===''){
+                    $("#tbDiaChi").html("Địa chỉ không được để trống");
+                    return false;
+                }
+                $("#tbDiaChi").html("(*)");
+                return true;
+            }
+            function Luu() {
+                if (!checkHoTen() || !checkSDT() || !checkDiaChi()) {
+                    alert("Vui lòng nhập đủ thông tin")
+                    return false
+                }
+                return true
+            }
+            $("#txtHoTen").blur(checkHoTen)
+            $("#txtSDT").blur(checkSDT)
+            $("#txtDiaChi").blur(checkDiaChi)
+            $("#btnDatMua").click(Luu)
+        })
+    </script>
+</head>
+<body>
+<!-- START HEADER -->
+<header class="header" th:insert="view_customer/header.html">
+
+</header>
+<!-- END HEADER -->
+
+<!-- START SUB HEADER -->
+<div class="sub__header" th:insert="view_customer/sub_header.html">
+
+</div>
+<!-- END SUB HEADER -->
+
+
+<!-- START MAIN CONTENT -->
+<form action="/checkout/done">
+<div class="
+    checkout-container
+    w-full
+    px-3 sm:px-4 md:px-10 lg:px-32
+    py-4
+    z-20">
+    <div class="checkout relative w-full flex flex-row justify-between items-start">
+        <div class="checkout-left w-1/2 static top-0 left-0 pr-5">
+            <div class="left-payMethod mb-5">
+                <div class="left-payMethod-title py-3">
+                    <p class="font-medium text-2xl">
+                        1. Phương thức thanh toán
+                    </p>
+                </div>
+                <div class="left-payMethod-detail w-full px-6 py-5 border-[1px] border-slate-400 border-dashed rounded-md">
+                    <p class="text-blue-700">
+                        Thanh toán khi nhận hàng (COD)
+                    </p>
+                </div>
+            </div>
+            <div class="left-customerInfo mb-5">
+                <div class="left-customerInfo-title py-3">
+                    <h1 class="font-medium text-2xl">
+                        3. Thông tin người mua
+                    </h1>
+                </div>
+                <div class="left-customerInfo-detail px-6 py-5 border-[1px] border-slate-400 border-dashed rounded-md">
+                    <div class="customer-component customer-name">
+                        <p class="customer-title customer-title-name">
+                            3.1. Họ tên khách hàng
+                            <span class="customer-title-required" id="tbHoTen">
+                                    (*)
+                                </span>
+                        </p>
+                        <input type="text" placeholder="VD: Võ Thị Trà My" checked class="customer-input customer-name-input"
+                        th:value="${user.firstName} + ' ' + ${user.lastName}" id="txtHoTen">
+                        <p class="customer-info-noti customer-name-noti">
+
+                        </p>
+                    </div>
+                    <div class="customer-component customer-phone">
+                        <p class="customer-title customer-title-phone">
+                            3.2. Số điện thoại liên lạc
+                            <span class="customer-title-required" id="tbSDT">
+                                    (*)
+                                </span>
+                        </p>
+                        <input type="text" placeholder="VD: 0358434915" class="customer-input customer-phone-input"
+                        th:value="${user.phone}" name="phone" id="txtSDT">
+                        <p class="customer-info-noti customer-phone-noti">
+
+                        </p>
+                    </div>
+                    <div class="customer-component customer-address">
+                        <p class="customer-title customer-title-address">
+                            3.3. Địa chỉ nhận hàng
+                            <span class="customer-title-required" id="tbDiaChi">
+                                    (*)
+                                </span>
+                        </p>
+                        <input type="text" placeholder="VD: Số 68, đường 17, KP.5, P.Bình Chiểu, Tp.Thủ Đức" class="customer-input customer-address-input" th:value="${user.address}" name="address" id="txtDiaChi">
+                        <p class="customer-info-noti customer-address-noti">
+
+                        </p>
+                    </div>
+                </div>
+                <div class="left-buyOption mt-6">
+                    <div class="customer-buyButton-container">
+                        <p class="text-slate-800 italic font-medium flex flex-row">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-slate-800">
+                                <path d="M12 4c-4.879 0-9 4.121-9 9s4.121 9 9 9 9-4.121 9-9-4.121-9-9-9zm0 16c-3.794 0-7-3.206-7-7s3.206-7 7-7 7 3.206 7 7-3.206 7-7 7zm8.292-13.292-3.01-3 1.412-1.417 3.01 3zM6.698 3.707l-2.99 2.999L2.29 5.294l2.99-3z"></path><path d="M14.832 10.555A1 1 0 0 0 14 9H9v2h3.132l-2.964 4.445A1 1 0 0 0 10 17h5v-2h-3.132l2.964-4.445z"></path>
+                            </svg>
+                            Hãy kiểm tra hàng được giao trước khi thanh toán cho shipper.
+                        </p>
+                        
+                        <button class="buyButton-btn" id="btnDatMua">
+                             Đặt mua
+                        </button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="checkout-right w-1/2 pl-5">
+            <div class="right-title py-3">
+                <h1 class="font-medium text-2xl">
+                    2. Thông tin đơn hàng
+                </h1>
+            </div>
+            <div class="right-top">
+                <div class="right-top-orderOverrall px-6 py-3 border-[1px] border-dashed border-slate-400 rounded-md">
+                    <div class="orderOverrall-title py-2">
+                        <p class="font-medium">
+                            2.1. Tổng quan
+                        </p>
+                    </div>
+                    <div class="orderOverrall-detail">
+                        <div class="orderOverrall-detail-component orderOverrall-quantity-container">
+                                <span class="orderOverrall-quantity-title">
+                                    Tổng số lượng sản phẩm
+                                </span>
+                            <span class="orderOverrall-quantity font-bold" th:text="${cartHeader.totalQuantity}"></span>
+                        </div>
+                        <div class="orderOverrall-detail-component orderOverrall-totalPrice-container">
+                                <span class="orderOverrall-totalPrice-title font-bold">
+                                    Thành tiền
+                                </span>
+                            <span class="orderOverrall-totalPrice text-red-600 font-bold">
+                                    <span th:text="${@priceConvert.chuyenMoney(cartHeader.totalPrice)}"></span>
+                                    <span>
+                                        &#8363
+                                    </span>
+                                </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-bottom mt-5 px-6 py-3 border-[1px] border-dashed border-slate-400 rounded-md">
+                <div class="right-bottom-title mb-3">
+                    <h1 class="font-medium">
+                        2.2. Danh sách sản phẩm
+                    </h1>
+                </div>
+                <div class="right-bottom-list">
+                    <table class="bottom-list w-full">
+                        <tr class="bottom-list-header">
+                            <td class="bottom-list-header-col list-name">Tên sản phẩm</td>
+                            <td class="bottom-list-header-col list-quantity">Số lượng</td>
+                            <td class="bottom-list-header-col list-totalPrice">Thành tiền</td>
+                        </tr>
+                        <th:block th:each="cartDetail: ${cartDetailList}">
+                            <tr class="bottom-list-item">
+                                <td class="bottom-name py-3">
+                                    <a th:href="@{/products/product/{categoryId}(categoryId=${cartDetail.bag.bagId})}" class="bottom-link"
+                                    th:text="${cartDetail.bag.bagCategory.name}"></a>
+                                </td>
+                                <td class="bottom-quantity" th:text="${cartDetail.bagQty}"></td>
+                                <td class="item-totalPrice">
+                                    <span th:text="${@priceConvert.chuyenMoney(cartDetail.bagQty * cartDetail.bag.price)}"></span>
+                                    <span>
+                                        &#8363
+                                    </span>
+                                </td>
+                            </tr>
+                        </th:block>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<!-- END MAIN CONTENT -->
+
+<!-- START FOOTER -->
+<footer class="footer" th:insert="view_customer/footer.html">
+
+</footer>
+<!-- END FOOTER -->
+
+<!-- SCRIPT FOR MAKING ANIMATION OF HEADER AND FOOTER -->
+<script src="/script_customer/header_footer-control.js"></script>
+</body>
+</html>

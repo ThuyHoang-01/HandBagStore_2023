@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}"></title>
+    <link rel="stylesheet" href="/css_customer/__base.css">
+</head>
+<body>
+<!-- START HEADER -->
+<header class="header" th:insert="view_customer/header.html">
+
+</header>
+<!-- END HEADER -->
+
+<!-- START SUB HEADER -->
+<div class="sub__header" th:insert="view_customer/sub_header.html">
+
+</div>
+<!-- END SUB HEADER -->
+
+
+<!-- START MAIN CONTENT -->
+<div class="
+    w-full px-3 sm:px-4 md:px-10 lg:px-32 py-4 z-20 flex flex-row justify-between items-start">
+    <div class="w-1/2">
+        <div class="cart-empty-top py-5">
+            <h1 class="cart-empty-title text-3xl font-medium text-green-700">
+                Bạn đã đặt hàng thành công
+            </h1>
+            <h2 class="cart-empty-suggestion mt-3 text-lg text-slate-800">
+                Xin cảm ơn bạn đã đặt hàng. Chúng tôi sẽ sớm gửi hàng đến tay bạn.
+            </h2>
+        </div>
+        <div class="cart-empty-bottom w-full py-5 flex flex-row justify-between items-center">
+            <a href="/" class="cart-empty-bottom-button cart-empty-login">
+                Tiếp tục mua sắm
+            </a>
+            <a href="/pa/orders/processingOrders" class="cart-empty-bottom-button cart-empty-goShopping">
+                Các đơn hàng của tôi
+            </a>
+        </div>
+    </div>
+    <div class="w-1/2 pl-3">
+        <figure class="w-full h-96">
+            <img th:src="@{/imgs/shipping_illu.webp}" alt="" class="w-full h-full object-cover transform scale-95">
+        </figure>
+    </div>
+</div>
+
+<!-- END MAIN CONTENT -->
+
+
+<!-- START FOOTER -->
+<footer class="footer" th:insert="view_customer/footer.html">
+
+</footer>
+<!-- END FOOTER -->
+
+<!-- SCRIPT FOR MAKING ANIMATION OF HEADER AND FOOTER -->
+<script src="/script_customer/header_footer-control.js"></script>
+</body>
+</html>

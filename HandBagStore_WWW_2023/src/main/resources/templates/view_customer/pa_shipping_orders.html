@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}"></title>
+    <link rel="stylesheet" href="/css_customer/__base.css">
+</head>
+<body>
+<!-- START HEADER -->
+<header class="header" th:insert="view_customer/header.html">
+
+</header>
+<!-- END HEADER -->
+
+<!-- START SUB HEADER -->
+<div class="sub__header" th:insert="view_customer/sub_header.html">
+
+</div>
+<!-- END SUB HEADER -->
+
+
+<!-- START MAIN CONTENT -->
+<div class="
+    pa-container
+    w-full
+    px-3 sm:px-4 md:px-10 lg:px-32
+    py-4
+    z-2 ">
+    <form action="" method="post">
+        <div class="pa relative w-full h-full flex flex-row justify-between items-start">
+            <div class="pa-left h-full px-3 bg-white w-1/4 border-r-[1px] border-slate-300 flex flex-col justify-start items-start sticky top-0 left-0">
+                <div class="pa-left-top-wrapper w-full flex-shrink-0">
+                    <div class="pa-userinfo w-full px-3 py-3 flex flex-row justify-start items-center">
+                        <div class="pa-userinfo-left w-11 h-11 overflow-hidden flex-shrink-0 rounded-full border-2 border-blue-600">
+                            <img th:src="${userAvatar}" alt="" class="w-full h-full object-cover rounded-full">
+                        </div>
+                        <div class="pa-userinfo-right flex flex-col justify-between flex-1 items-start ml-3">
+                            <span class="text-slate-700 text-sm">Tài khoản của</span>
+                            <span class="font-medium text-lg" th:text="${currentUser.firstName} + ' ' + ${currentUser.lastName}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pa-left-bot-wrapper w-full h-full flex-1 mt-2">
+                    <a href="/pa/account" class="pa-left-bot-comp pa-account">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);">
+                            <path d="M7.5 6.5C7.5 8.981 9.519 11 12 11s4.5-2.019 4.5-4.5S14.481 2 12 2 7.5 4.019 7.5 6.5zM20 21h1v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h17z"></path>
+                        </svg>
+                        <span>
+                                Thông tin tài khoản
+                            </span>
+                    </a>
+                    <a href="/pa/orders/processingOrders" class="pa-left-bot-comp pa-order bg-slate-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);">
+                            <path d="M22 8a.76.76 0 0 0 0-.21v-.08a.77.77 0 0 0-.07-.16.35.35 0 0 0-.05-.08l-.1-.13-.08-.06-.12-.09-9-5a1 1 0 0 0-1 0l-9 5-.09.07-.11.08a.41.41 0 0 0-.07.11.39.39 0 0 0-.08.1.59.59 0 0 0-.06.14.3.3 0 0 0 0 .1A.76.76 0 0 0 2 8v8a1 1 0 0 0 .52.87l9 5a.75.75 0 0 0 .13.06h.1a1.06 1.06 0 0 0 .5 0h.1l.14-.06 9-5A1 1 0 0 0 22 16V8zm-10 3.87L5.06 8l2.76-1.52 6.83 3.9zm0-7.72L18.94 8 16.7 9.25 9.87 5.34zM4 9.7l7 3.92v5.68l-7-3.89zm9 9.6v-5.68l3-1.68V15l2-1v-3.18l2-1.11v5.7z"></path>
+                        </svg>
+                        <span>
+                                Quản lý đơn hàng
+                            </span>
+                    </a>
+                    <a href="/pa/logout" class="pa-left-bot-comp pa-logout">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);"
+                             class="pa-left-bot-icon">
+                            <path d="M16 13v-2H7V8l-5 4 5 4v-3z"></path><path d="M20 3h-9c-1.103 0-2 .897-2 2v4h2V5h9v14h-9v-4H9v4c0 1.103.897 2 2 2h9c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2z"></path>
+                        </svg>
+                        <span>
+                                Đăng xuất
+                            </span>
+                    </a>
+                </div>
+            </div>
+            <div class="pa-right w-3/4">
+                <div class="pa-right-title w-full px-4 py-4 flex flex-row justify-between items-center">
+                    <h1 class="font-medium text-2xl">
+                        Các đơn hàng đang vận chuyển
+                    </h1>
+                    <div class="order-viewOptions-container relative">
+                        <div class="order-viewOptions-title px-3 py-3 flex flex-row flex-nowrap justify-start items-center border border-slate-600 rounded-md cursor-pointer transition-all duration-200 hover:border-blue-600">
+                            <div class="w-4 h-4 rounded-full bg-blue-500 mr-3 pointer-events-none"></div>
+                            <span class="pointer-events-none">Đơn hàng đang vận chuyển</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);" class="order-viewOptions-chevron transform transition-all duration-200 ml-3">
+                                <path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path>
+                            </svg>
+                        </div>
+                        <div class="order-viewOptions w-80 absolute top-8 right-0 px-3 py-3 invisible opacity-0 border border-slate-400 shadow-xl rounded-md transition-all duration-200 bg-white flex flex-col flex-nowrap">
+                            <a href="/pa/orders/processingOrders" class="flex flex-row justify-start items-center px-3 py-3 rounded-md hover:bg-slate-200">
+                                <div class="w-4 h-4 rounded-full bg-yellow-500 mr-3"></div>
+                                <span>Đơn hàng đang được xử lí</span>
+                            </a>
+                            <a href="/pa/orders/shippingOrders" class="flex flex-row justify-start items-center  px-3 py-3 rounded-md hover:bg-slate-200">
+                                <div class="w-4 h-4 rounded-full bg-blue-500 mr-3"></div>
+                                <span> Đơn hàng đang vận chuyển</span>
+                            </a>
+                            <a href="/pa/orders/shippedOrders" class="flex flex-row justify-start items-center  px-3 py-3 rounded-md hover:bg-slate-200">
+                                <div class="w-4 h-4 rounded-full bg-green-500 mr-3"></div>
+                                <span>Đơn hàng đã giao xong</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pa-right-main w-full px-5 py-3 flex flex-row justify-between items-start">
+                    <table class="w-full">
+                        <tr class="text-center bg-slate-200">
+                            <td class="w-2/12 font-medium rounded-tl-md rounded-bl-md">Mã đơn</td>
+                            <td class="w-3/12 font-medium">Ngày đặt</td>
+                            <td class="w-2/12 font-medium">Giá gốc</td>
+                            <td class="w-2/12 font-medium">VAT</td>
+                            <td class="py-3 3/12 font-medium">Tổng giá trị</td>
+                        </tr>
+                        <th:block th:each="order: ${orderList}">
+	                        <tr class="text-center border-b border-slate-400">
+	                            <td>
+	                            	<a th:href="@{/pa/orders/orderDetails/{saleOrderId}(saleOrderId=${order.saleOrderId})}" class="text-blue-600 hover:underline focus:underline"
+	                            	 th:if="${order.status} == 2" th:text="${order.saleOrderId}" th:value="${order.saleOrderId}">
+	                            	</a>
+	                            </td>
+	                            <td class="py-4" th:if="${order.status} == 2">
+		                            <span th:text="${#temporals.format(order.orderDate, 'dd-MM-yyyy HH:mm')}"></span>
+	                            </td>
+	                            <td th:if="${order.status} == 2">
+	                                <span th:text="${@priceConvert.chuyenMoney(order.subTotal)}"></span>
+	                                <span>&#8363</span>
+	                            </td>
+	                            <td th:if="${order.status} == 2">
+	                                <span th:text="${@priceConvert.chuyenMoney(order.taxVat)}"></span>
+	                                <span>&#8363</span>
+	                            </td>
+	                            <td th:if="${order.status} == 2">
+	                                <span class="text-red-600 font-medium" th:text="${@priceConvert.chuyenMoney(order.totalDue)}"></span>
+	                                <span class="text-red-600 font-medium">&#8363</span>
+	                            </td>
+	                            <td th:if="${order.status} == 1">
+	                                <a href="" class="px-2 py-2 rounded-md transition-all bg-red-500 text-white text-sm hover:bg-red-600">
+	                                    Huỷ đơn
+	                                </a>
+	                            </td>
+	                        </tr>
+                        </th:block>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- END MAIN CONTENT -->
+
+
+<!-- START FOOTER -->
+<footer class="footer" th:insert="view_customer/footer.html">
+
+</footer>
+<!-- END FOOTER -->
+
+<!-- SCRIPT FOR MAKING ANIMATION OF HEADER AND FOOTER -->
+<script src="script_customer/header_footer-control.js"></script>
+<script src="/script_customer/pa_orders.js"></script>
+</body>
+</html>

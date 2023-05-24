@@ -1,0 +1,325 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* START SALE ORDER PAGE */
+
+.menu.active{
+    @apply
+    top-12 opacity-100 visible z-50
+}
+
+.option{
+    @apply
+    w-full
+    px-3 py-4
+    transition-all duration-200
+    flex flex-row justify-start items-center
+    text-slate-700 font-medium rounded-md
+    border border-dashed border-transparent
+    hover:border-slate-800
+}
+
+.option svg{
+    @apply fill-slate-700 transition-all duration-200
+}
+
+.option span{
+    @apply ml-6 transition-all duration-200
+}
+
+.option:hover svg{
+    @apply fill-black
+}
+
+.option:hover span{
+    @apply text-black
+}
+
+
+.admin-order-view-option{
+    @apply
+    block w-full
+    px-3 py-3 transition-all duration-200 rounded-md
+    hover:bg-slate-300
+}
+
+.admin-order-viewOptions-icon.active{
+    @apply
+    rotate-180
+}
+
+.admin-order-viewOptions.active {
+    @apply
+    top-full opacity-100 visible mt-1
+}
+
+.search-order-suggesstion-container.active {
+    @apply
+    opacity-100 visible
+}
+
+.order-search-suggesstion{
+    @apply
+    block w-full px-3 py-3 transition-all
+    flex flex-row justify-between items-center
+    border border-dashed border-transparent
+    rounded-md
+    hover:border-slate-500
+}
+
+.product-search-suggesstion{
+    @apply
+    block w-full px-3 py-3 transition-all
+    flex flex-row justify-between items-center
+    border border-dashed border-transparent
+    rounded-md
+    hover:border-slate-500
+}
+
+.search-product-cateId{
+    @apply
+    w-14 flex-shrink-0
+}
+
+.search-product-other{
+    @apply
+    flex-1 flex flex-row justify-end items-center
+}
+
+.search-product-brand{
+    @apply
+    w-36 text-center flex-shrink-0
+}
+
+.search-product-name{
+    @apply
+    flex-1
+}
+
+.product-search-suggesstion span{
+    @apply
+    px-2
+}
+
+.search-order-status{
+    @apply
+    px-3 py-1 rounded-md bg-slate-500 text-white
+}
+
+
+.order-static-icon.active{
+    @apply rotate-180
+}
+
+.order-staticOptions.active{
+    @apply
+    top-full mt-2 opacity-100 visible
+}
+
+/* END SALE ORDER PAGE */
+
+/* START PRODUCTS MANAGER PAGE */
+.add-comp {
+    @apply
+    w-full mb-3
+    flex flex-col justify-start items-start
+}
+
+.add-comp-title{
+    @apply
+    mb-1
+}
+
+.add-comp-input{
+    @apply
+    w-full
+    outline-none
+    px-5 py-2
+    mb-1
+    border border-slate-600 rounded-md
+    transition-all duration-200
+    focus:border-blue-700
+}
+
+.add-comp-notify{
+    @apply
+    font-medium text-sm
+}
+
+.add-comp.success .add-comp-input{
+    @apply
+    border-green-600
+}
+
+.add-comp.success .add-comp-notify{
+    @apply
+    text-green-600
+}
+
+.add-comp.fail .add-comp-input{
+    @apply
+    border-red-600
+}
+
+.add-comp.fail .add-comp-notify{
+    @apply
+    text-red-600
+}
+
+.prd-container{
+    @apply
+    w-full px-3 py-3
+}
+
+.prd{
+    @apply
+    flex flex-col justify-start items-start
+    py-3 border border-dashed border-slate-400 rounded-md
+    mb-3
+}
+
+.product-delete-container{
+    @apply
+    w-full flex flex-row justify-end items-center py-1 px-3
+}
+
+.product-delete-btn{
+    @apply
+    px-5 py-3 transition-all duration-200 bg-red-600
+    rounded-md
+    flex flex-row justify-start items-center
+    hover:bg-red-700
+}
+
+.product-delete-btn svg{
+    @apply
+    fill-white mr-3
+}
+
+.product-delete-btn span{
+    @apply text-white
+}
+
+.prd-info-wrapper{
+    @apply
+    w-full flex flex-row justify-start items-center
+}
+
+.add-comp-prd{
+    @apply w-1/3 px-3
+}
+
+.prd-images-container{
+    @apply
+    px-3 w-full flex flex-col justify-start items-start flex-wrap
+}
+
+.prd-images-header{
+    @apply w-full mt-3
+}
+
+.prd-image-add{
+    @apply
+    ml-3 px-5 py-3 bg-blue-600
+    cursor-pointer
+    rounded-md text-white transition-all
+    hover:bg-blue-700
+}
+
+.prd-images-wrapper{
+    @apply
+    w-full h-72
+    mt-2
+    px-3 py-3
+    overflow-x-scroll
+    flex flex-row justify-start items-center flex-nowrap
+}
+
+.prd-image-choose{
+    @apply
+    rounded-md ml-3 border border-slate-400
+}
+
+.prd-image-frame{
+    @apply
+    w-44 flex-shrink-0 h-full rounded-md mr-3
+}
+
+.prd-image{
+    @apply
+    w-full h-full rounded-md object-cover
+}
+
+.overlay.active{
+    @apply opacity-30 visible z-30
+}
+
+.category-container.active{
+    @apply
+    opacity-100 visible z-50
+    left-1/2
+}
+/* END PRODUCTS MANAGER PAGE */
+
+/* START CUSTOMER MANAGER PAGE */
+.admin-customer-viewOptions.active{
+    @apply
+    opacity-100 visible top-full mt-2
+}
+
+.admin-customer-viewOptions-icon.active{
+    @apply
+    rotate-180
+}
+
+.admin-customer-view-option{
+    @apply
+    block w-full px-3 py-3
+    transition-all duration-200
+    rounded-md
+    hover:bg-slate-200
+}
+/* END CUSTOMER MANAGER PAGE */
+
+
+/* START ADMIN ORDER DETAIL PAGE */
+
+.overrall-info-wrapper{
+    @apply
+    w-1/4 px-2 py-2
+    flex flex-col justify-start items-start
+}
+
+.overrall-info-wrapper-title{
+    @apply
+    mb-1
+}
+
+.overrall-info-input{
+    @apply
+    outline-none
+    border border-slate-600
+    pointer-events-none
+    px-5 py-3 rounded-md
+}
+
+.order-detail-button{
+    @apply
+    px-5 py-3
+    rounded-md
+    transition-all duration-200
+    text-white mr-3
+}
+
+.btn-ready{
+    @apply
+    bg-blue-600 hover:bg-blue-700
+}
+
+.btn-cancel{
+    @apply
+    bg-red-600 hover:bg-red-700
+}
+/* END ADMIN ORDER DETAIL PAGE */

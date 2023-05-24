@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${pageTitle}"></title>
+  <link rel="stylesheet" href="/css_customer/__base.css">
+</head>
+<body>
+<!-- START HEADER -->
+<header class="header" th:insert="view_customer/header.html">
+
+</header>
+<!-- END HEADER -->
+
+<!-- START SUB HEADER -->
+<div class="sub__header" th:insert="view_customer/sub_header.html">
+
+</div>
+<!-- END SUB HEADER -->
+
+
+<!-- START MAIN CONTENT -->
+<div class="
+            cart-container
+            w-full min-h-screen
+            px-3 sm:px-4 md:px-10 lg:px-32
+            py-4
+            z-20
+        ">
+  <div class="cart-overrall py-3">
+    <h1 class="cart-overrall-title">
+      Đơn hàng của bạn
+    </h1>
+  </div>
+  <div class="cart-wrapper relative w-full flex flex-row justify-between items-start flex-wrap">
+    <div class="cart-left w-3/4 px-3">
+      <table class="items-list w-full">
+        <tr class="items-list-header">
+          <td class="items-list-header-col col-imge">Ảnh minh hoạ</td>
+          <td class="items-list-header-col col-name">Tên sản phẩm</td>
+            <td class="items-list-header-col col-color">Màu sắc</td>
+          <td class="items-list-header-col col-unitPrice">Đơn giá</td>
+          <td class="items-list-header-col col-quantity">Số lượng</td>
+          <td class="items-list-header-col col-totalPrice">Thành tiền</td>
+          <td class="items-list-header-col col-deleteItem">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);">
+              <path d="M15 2H9c-1.103 0-2 .897-2 2v2H3v2h2v12c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2V8h2V6h-4V4c0-1.103-.897-2-2-2zM9 4h6v2H9V4zm8 16H7V8h10v12z"></path>
+            </svg>
+          </td>
+        </tr>
+          <th:block th:each="orderDetail: ${orderDetailList}">
+              <tr class="items-list-item">
+                  <input type="hidden" class="item-id" th:value="${orderDetail.bag.bagId}">
+                  <input type="hidden" class="cart-header-id" th:value="${orderDetail.saleOrder.customer.customerId}">
+                  <td class="item-image-wrapper">
+                      <figure class="item-image">
+                          <img th:src="'data:image/png;base64,' + ${orderDetail.bag.bagCategory.coverPhoto}" alt="">
+                      </figure>
+                  </td>
+                  <td class="item-name">
+                      <a th:href="@{/products/product/{categoryId}(categoryId=${orderDetail.bag.bagCategory.bagCategoryId})}" class="item-link" th:text="${orderDetail.bag.bagCategory.name}"></a>
+                  </td>
+                  <td class="item-color">
+                      <span th:text="${orderDetail.bag.color}"></span>
+                  </td>
+                  <td class="item-unitPrice">
+                                <span th:text="${@priceConvert.chuyenMoney(orderDetail.bag.price)}"></span>
+                      <span>
+                                    &#8363
+                                </span>
+                  </td>
+                  <td class="item-quantity">
+                      <span th:text="${orderDetail.orderQty}"></span>
+                  </td>
+                  <td class="item-totalPrice">
+                                <span th:text="${@priceConvert.chuyenMoney(orderDetail.orderQty * orderDetail.bag.price)}"></span>
+                      <span>
+                                    &#8363
+                                </span>
+                  </td>
+                  <td>
+                      <button class="item-deleteBtn">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);">
+                              <path d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z"></path><path d="M9 10h2v8H9zm4 0h2v8h-2z"></path>
+                          </svg>
+                      </button>
+                  </td>
+              </tr>
+          </th:block>
+      </table>
+    </div>
+    <div class="cart-right w-1/4 px-3 py-3 sticky top-0 right-0 bg-slate-200 rounded-md">
+      <div class="cart-right-wrapper w-full flex flex-col justify-start items-start">
+        <div class="cart-totalCategories w-full mb-5 flex flex-row justify-between items-center">
+                            <span class="cart-totalQuantity-title">
+                                Số danh mục
+                            </span>
+          <span class="cart-totalQuantity font-medium" th:text="${orderDetailNum}"></span>
+        </div>
+        <div class="cart-totalQuantity-container w-full mb-5 flex flex-row justify-between items-center">
+                            <span class="cart-totalQuantity-title">
+                                Tổng số lượng
+                            </span>
+                            <span class="cart-totalQuantity font-medium" th:text="${totalQty}"></span>
+        </div>
+          <div class="cart-totalDue-container w-full mb-5 flex flex-row justify-between items-center">
+                            <span class="cart-totalDue-title">
+                                Giá gốc
+                            </span>
+              <div>
+                  <span class="cart-totalDue font-medium text-red-600" th:text="${@priceConvert.chuyenMoney(saleOrder.subTotal)}"> </span>
+                  <span class="text-red-500 font-medium">&#8363</span>
+              </div>
+          </div>
+          <div class="cart-totalDue-container w-full mb-5 flex flex-row justify-between items-center">
+                            <span class="cart-totalDue-title">
+                                VAT
+                            </span>
+              <div>
+                  <span class="cart-totalDue font-medium text-red-600" th:text="${@priceConvert.chuyenMoney(saleOrder.taxVat)}"> </span>
+                  <span class="text-red-500 font-medium">&#8363</span>
+              </div>
+          </div>
+        <div class="cart-totalDue-container w-full mb-5 flex flex-row justify-between items-center">
+                            <span class="cart-totalDue-title">
+                                Tổng tiền
+                            </span>
+            <div>
+                <span class="cart-totalDue font-medium text-red-600" th:text="${@priceConvert.chuyenMoney(saleOrder.totalDue)}"> </span>
+                <span class="text-red-500 font-medium">&#8363</span>
+            </div>
+        </div>
+        <div class="cart-buy-container w-full flex flex-col justify-start items-center">
+            <a th:href="@{/pa/orders/cancelOrders/{saleOrderId}(saleOrderId=${saleOrder.saleOrderId})}" 
+            th:if="${status} == 1" class="cart-buy-btn block mt-3 text-center w-full py-4 bg-red-600 text-white rounded-md transition-all transform hover:bg-red-700 focus:scale-95"
+            onclick="if(!(confirm('Bạn có chắc sẽ hủy đơn hàng không?'))) return false;">
+                Hủy đơn hàng
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MAIN CONTENT -->
+
+
+<!-- START FOOTER -->
+<footer class="footer" th:insert="view_customer/footer.html">
+
+</footer>
+<!-- END FOOTER -->
+
+<!-- SCRIPT FOR MAKING ANIMATION OF HEADER AND FOOTER -->
+<script src="/script_customer/header_footer-control.js"></script>
+<script src="/script_customer/cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}"></title>
+    <link rel="icon" th:src="@{/imgs/logo.png}">
+    <link rel="stylesheet" href="/css_customer/__base.css">
+</head>
+<body>
+<!-- START HEADER -->
+<header class="header" th:insert="view_customer/header.html">
+
+</header>
+<!-- END HEADER -->
+
+<!-- START SUB HEADER -->
+<div class="sub__header" th:insert="view_customer/sub_header.html">
+
+</div>
+<!-- END SUB HEADER -->
+
+
+<!-- START MAIN CONTENT -->
+<div class="
+    product-detail-container
+    w-full
+    px-3 sm:px-4 md:px-10 lg:px-32
+    py-4
+    z-20">
+    <div class="product-overrall relative w-full py-5 flex flex-col md:flex-row lg:flex-row justify-between items-start flex-wrap">
+        <div class="w-full md:w-2/3 lg:w-2/3 h-auto order-2 md:order-1 lg:order-1">
+            <div class="product-images w-full flex flex-row justify-start items-start flex-wrap">
+
+            </div>
+            <div class="product-introduce mt-5">
+                <p>
+                    Kích thước:
+                    <span th:text="${bagCategory.size}"></span>
+                </p>
+                <p class="text-slate-800 text-base mt-3" th:text="${bagCategory.shortDescription}"></p>
+                <p class="text-slate-800 text-base mt-3" th:text="${bagCategory.longDescription}"></p>
+            </div>
+            <div class="product-reviews-container w-full flex flex-col">
+                <div class="product-evaluate py-5 flex flex-row items-center">
+                    <span class="font-bold text-xl">Đánh giá</span>
+                    <div class="flex flex-row ml-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);"
+                             class="svg-icon star star-1">
+                            <path d="m6.516 14.323-1.49 6.452a.998.998 0 0 0 1.529 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082a1 1 0 0 0-.59-1.74l-5.701-.454-2.467-5.461a.998.998 0 0 0-1.822 0L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.214 4.107zm2.853-4.326a.998.998 0 0 0 .832-.586L12 5.43l1.799 3.981a.998.998 0 0 0 .832.586l3.972.315-3.271 2.944c-.284.256-.397.65-.293 1.018l1.253 4.385-3.736-2.491a.995.995 0 0 0-1.109 0l-3.904 2.603 1.05-4.546a1 1 0 0 0-.276-.94l-3.038-2.962 4.09-.326z"></path>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);"
+                             class="svg-icon star star-2">
+                            <path d="m6.516 14.323-1.49 6.452a.998.998 0 0 0 1.529 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082a1 1 0 0 0-.59-1.74l-5.701-.454-2.467-5.461a.998.998 0 0 0-1.822 0L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.214 4.107zm2.853-4.326a.998.998 0 0 0 .832-.586L12 5.43l1.799 3.981a.998.998 0 0 0 .832.586l3.972.315-3.271 2.944c-.284.256-.397.65-.293 1.018l1.253 4.385-3.736-2.491a.995.995 0 0 0-1.109 0l-3.904 2.603 1.05-4.546a1 1 0 0 0-.276-.94l-3.038-2.962 4.09-.326z"></path>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);"
+                             class="svg-icon star star-3">
+                            <path d="m6.516 14.323-1.49 6.452a.998.998 0 0 0 1.529 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082a1 1 0 0 0-.59-1.74l-5.701-.454-2.467-5.461a.998.998 0 0 0-1.822 0L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.214 4.107zm2.853-4.326a.998.998 0 0 0 .832-.586L12 5.43l1.799 3.981a.998.998 0 0 0 .832.586l3.972.315-3.271 2.944c-.284.256-.397.65-.293 1.018l1.253 4.385-3.736-2.491a.995.995 0 0 0-1.109 0l-3.904 2.603 1.05-4.546a1 1 0 0 0-.276-.94l-3.038-2.962 4.09-.326z"></path>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);"
+                             class="svg-icon star star-4">
+                            <path d="m6.516 14.323-1.49 6.452a.998.998 0 0 0 1.529 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082a1 1 0 0 0-.59-1.74l-5.701-.454-2.467-5.461a.998.998 0 0 0-1.822 0L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.214 4.107zm2.853-4.326a.998.998 0 0 0 .832-.586L12 5.43l1.799 3.981a.998.998 0 0 0 .832.586l3.972.315-3.271 2.944c-.284.256-.397.65-.293 1.018l1.253 4.385-3.736-2.491a.995.995 0 0 0-1.109 0l-3.904 2.603 1.05-4.546a1 1 0 0 0-.276-.94l-3.038-2.962 4.09-.326z"></path>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);"
+                             class="svg-icon star-5">
+                            <path d="m6.516 14.323-1.49 6.452a.998.998 0 0 0 1.529 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082a1 1 0 0 0-.59-1.74l-5.701-.454-2.467-5.461a.998.998 0 0 0-1.822 0L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.214 4.107zm2.853-4.326a.998.998 0 0 0 .832-.586L12 5.43l1.799 3.981a.998.998 0 0 0 .832.586l3.972.315-3.271 2.944c-.284.256-.397.65-.293 1.018l1.253 4.385-3.736-2.491a.995.995 0 0 0-1.109 0l-3.904 2.603 1.05-4.546a1 1 0 0 0-.276-.94l-3.038-2.962 4.09-.326z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="product-reviewOverrall py-5 border-t-[1px] border-b-[1px] border-slate-600">
+                    <div class="product-reviewQuantity font-bold">
+                        <span class="product-num text-xl"></span>
+                        <span class="text-xl"> bài đánh giá</span>
+                        <a href="" class="text-blue-800 ml-5 hover:underline">Xem tất cả đánh giá</a>
+                    </div>
+                    <button class="product-writeReview mt-5 w-1/2 py-4 bg-gray-300 border-2 border-transparent rounded-md transition-all hover:bg-slate-400 focus:border-dashed focus:bg-white focus:border-black">
+                        Viết đánh giá của bạn
+                    </button>
+                </div>
+                <div class="product-reviews py-5">
+                    <p class="font-bold text-xl">Đánh giá từ khách hàng</p>
+                    <div class="product-reviews-wrapper">
+                        <!-- ĐÁM DIV PHÍA SAU HÀNG NÀY LÀ CHỖ CẦN HIỂN THỊ CÁC REVIEW LÊN NÈ -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="product-info-container order-1 md:order-2 lg:order-2 w-full md:w-1/3 lg:w-1/3 h-auto pl-5 py-3 relative md:sticky lg:sticky md:top-0 lg:top-0 md:right-0 lg:right-0">
+            <div class="product-info-top flex flex-col flex-wrap">
+                <input type="hidden" id="currentBagCategory" th:value="${bagCategory.bagCategoryId}">
+                <h2 class="product-name font-medium text-xl" th:text="${bagCategory.name}"></h2>
+                <h3 class="product-price text-2xl font-bold mt-5 text-red-800">
+
+                </h3>
+            </div>
+            <div class="product-info-center mt-5">
+                <p class="text-slate-800">
+                    Các màu:
+                </p>
+                
+                <div class="product-info-colors w-full mt-3 flex flex-row justify-start items-center flex-wrap">
+
+                </div>
+                <p class="mt-5">
+                    Số lượng còn:
+                    <span class="bag-quantity font-bold">3</span>
+                </p>
+            </div>
+            <div class="product-info-bottom flex flex-col mt-8">
+                <div class="product-quantity-container flex flex-row justify-start items-center">
+                    <p class="mr-5">Số lượng:</p>
+                    <div class="product-quantity flex flex-row justify-start items-center">
+                        <button class="product-quantity-subtract">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);"
+                                 class="svg-icon icon-minus">
+                                <path d="M5 11h14v2H5z"></path>
+                            </svg>
+                        </button>
+                        <span class="inline-block quantity font-bold w-16 text-center" >1</span>
+                        <button class="product-quantity-add">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1)"
+                                 class="svg-icon icon-add">
+                                <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-buyOptions-container mt-8 flex flex-col justify-start items-start">
+                
+                	<form action="#" class="w-full" th:action="@{/products/product/add_to_cart}" method="post">
+                		<input type="hidden" name="orderQuantity" class="orderQuantity" value="" />
+                		<input type="hidden" value="" class="selectedColor" name="bagID"/>
+                		<input type="hidden" th:value="${userID}" name="cusID"/>
+                		<input type="hidden" th:value="${bagCategory.bagCategoryId}" name="bagCateID"/>
+                		
+	                    <button type="submit" class="product-buyOption product-addToCart">
+	                        Thêm vào giỏ hàng
+	                    </button>
+                	</form>
+                	
+                	<div th:if="${param.added != null}">
+	                	<div class="product-alert active">
+	                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+	                             class="svg-icon product-alert-icon">
+	                            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path>
+	                        </svg>
+	                        <p class="product-alert-title">
+	                            Đã thêm sản phẩm vào giỏ hàng của bạn
+	                        </p>
+	                    </div>
+                	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END MAIN CONTENT -->
+
+
+<!-- START FOOTER -->
+<footer class="footer" th:insert="view_customer/footer.html">
+
+</footer>
+<!-- END FOOTER -->
+
+<!-- SCRIPT FOR MAKING ANIMATION OF HEADER AND FOOTER -->
+<script src="/script_customer/header_footer-control.js"></script>
+<script src="/script_customer/product_detail.js"></script>
+<script src="/script_customer/product_to_cart.js"></script>
+</body>
+</html>

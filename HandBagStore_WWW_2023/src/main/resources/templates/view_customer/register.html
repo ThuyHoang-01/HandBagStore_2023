@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}"></title>
+    <link rel="stylesheet" href="/css_customer/__base.css">
+</head>
+<body>
+<div class="login opacity-0 transition-all duration-1000">
+    <div class="
+        register__container
+        flex
+        flex-col md:flex-row lg:flex-row
+        justify-between items-start flex-nowrap
+        ">
+        <div class="
+            register__left
+            bg-white opacity-95
+            px-10 md:px-15 lg:px-20
+            py-3 md:py-6 lg:py-12
+            w-full md:w-2/5 lg:w-2/5
+            flex flex-col justify-between items-start
+            flex-initial
+            shadow-sm md:shadow-none lg:shadow-none
+            ">
+            <div class="register-navigation">
+                <a href="/" class="
+                    back-link
+                    flex-initial
+                    px-1 md:px-3 lg:px-3
+                    py-1 md:py-2 lg:py-2
+                    flex flex-row justify-start items-center
+                    border-transparent border-2 border-dashed rounded-md
+                    transition-all duration-200
+                    transform
+                    -translate-x-8 md:-translate-x-1/4 lg:-translate-x-1/4
+                    hover:border-slate-700
+                    focus:scale-95
+                    ">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                         class="fill-black inline-block"
+                    >
+                        <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
+                    </svg>
+                    <span class="text-black ml-3 text-lg md:text-xl lg:text-xl">
+                            Về trang chủ
+                        </span>
+                </a>
+            </div>
+            <div class="register-content flex-initial mt-3 md:mt-5 lg:mt-8 mb-0 md:mb-5 lg:mb-8">
+                <div class="content-top">
+                    <h1 class="text-3xl font-bold text-pink-700">
+                        Tạo tài khoản
+                    </h1>
+                    <h1 class="text-3xl font-bold text-black mt-1">
+                        thêm trải nghiệm
+                    </h1>
+                </div>
+                <div class="content-bot mt-6">
+                    <p class="text-black">
+                        Chỉ cần dành ra ít phút tạo tài khoản thôi, chúng ta sẽ hiểu nhau nhiều hơn!
+                    </p>
+                    <p class="text-black mt-2">
+                        Mục đích cuối cùng của chúng tôi vẫn là tối đa trải nghiệm của khách hàng.
+                    </p>
+                </div>
+            </div>
+            <div class="register-spacer flex-auto hidden md:block lg:block">
+                <img src="../imgs/register_bgr.webp" alt="Hand bag" class="w-full h-full object-cover rounded-md transform -rotate-3">
+            </div>
+        </div>
+        <div class="
+            register__right
+            px-6 md:px-10 lg:px-20
+            py-6 md:py-8 lg:py-15
+            w-full md:w-3/5 lg:w-3/5
+            flex flex-row justify-start
+            flex-auto
+            ">
+            <div class="register__main w-full md:w-3/5 lg:w-3/5">
+                
+                <div th:if="${param.error != null}">
+					<div class='text-red-500 text-1xl text-left'>Tên đăng nhập mà bạn vừa nhập đã được sử dụng! Vui lòng chọn tên đăng nhập khác!</div>
+				</div>
+                
+                <form th:action="@{/register/regis}" th:object="${user}" method="post" class="main-form mt-6">
+                    <div class="form-comp form-firstName">
+                        <div class="title">
+                            <p class="label">
+                                Họ của bạn
+                            </p>
+                        </div>
+                        <input type="text" placeholder="Võ Thị Trà" id="firstName" name="firstName" autofocus>
+                        <p class="notify"></p>
+                    </div>
+                    <div class="form-comp form-lastName">
+                        <div class="title">
+                            <p class="label">
+                                Tên của bạn
+                            </p>
+                        </div>
+                        <input type="text" placeholder="Mi" id="lastName" name="lastName">
+                        <p class="notify"></p>
+                    </div>
+                    <div class="form-comp form-email">
+                        <div class="title">
+                            <p class="label">
+                                Tên đăng nhập
+                            </p>
+                        </div>
+                        <input type="text" placeholder="VD: tramicute123" id="emailInput" name="username">
+                        <p class="notify"></p>
+                    </div>
+                    <div class="form-comp form-pasword">
+                        <p class="label">
+                            Mật khẩu
+                        </p>
+                        <input type="password" placeholder="*****" id="passwordInput" name="password" >
+                        <p class="notify"></p>
+                    </div>
+                    <input type="submit" class="
+                        w-full mt-3
+                        py-3 md:py-3 lg:py-3
+                        bg-pink-600
+                        border-transparent border-[1px] border-slate-300 rounded-lg
+                        shadow-sm transform
+                        transition-all duration-200
+                        cursor-pointer
+                        text-white
+                        hover:shadow-md hover:bg-pink-700
+                        focus:scale-95 focus:border-dashed focus:border-pink-800
+                        focus:bg-white focus:text-black
+                        " value="Đăng kí thôi nàooo!" />
+                </form>
+                <div class="register-link mt-6">
+                        <span>
+                            Đã có tài khoản rồi?
+                        </span>
+                    <a href="/login"
+                       class="
+                        text-blue-600
+                        font-bold
+                        transform
+                        transition-all duration-200
+                        hover:text-blue-700
+                        focus:scale-95 focus:text-blue-700 focus:underline
+                        "
+                    >
+                        Đăng nhập thôi!
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/script_customer/register.js"></script>
+</body>
+</html>

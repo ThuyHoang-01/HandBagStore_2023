@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${pageTitle}"></title>
+  <link rel="stylesheet" href="/css_admin/__base.css">
+</head>
+<body>
+
+<div class="relative flex flex-row justify-between items-start">
+  <!--  START SIDEBAR-->
+  <aside class="w-64 flex-shrink-0 sticky top-0 left-0 px-2 h-screen z-10 bg-white border-r border-slate-200">
+
+  </aside>
+  <!--  END SIDEBAR-->
+
+  <div class="w-9/12 relative flex-1 flex flex-col justify-start items-center">
+    <!--  START HEADER-->
+    <header class="w-full h-16 shadow-md z-30 bg-white flex-shrink-0 sticky top-0 right-0" th:insert="view_admin/header.html"></header>
+    <!--  END HEADER-->
+
+    <main class="relative w-full px-5 py-3 mt-2 h-screen flex-1 flex flex-col justify-start items-start">
+
+      <!--      START MAIN CONTENT-->
+
+      <!--      END MAIN CONTENT-->
+    </main>
+  </div>
+</div>
+
+<!-- SCRIPT FOR MAKING ANIMATION OF HEADER AND FOOTER -->
+<script src="/script_admin/header.js"></script>
+</body>
+</html>

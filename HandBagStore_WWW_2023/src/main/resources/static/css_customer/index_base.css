@@ -1,0 +1,134 @@
+.container {
+            position: relative;
+            width: 100%;
+        }
+        .container .img1 img{
+            width: 60%;
+
+        }
+        .container .page1{
+            position: absolute;
+            top: 25%;
+            right: 5px;
+            color: rgb(0, 0, 0);
+            font: bold;
+            font-size: 25px;
+            vertical-align: left;
+        }
+        .container .btn1 {
+            position: absolute;
+            top: 37%;
+            right: 24%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            background-color: #555;
+            color: white;
+            font-size: 16px;
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .container .img2 img{
+            margin-left: 686px;
+            width: 55%;
+
+        }
+        .container .page2{
+            position: absolute;
+            top: 30%;
+            left: 1%;
+            color: rgb(0, 0, 0);
+            font: bold;
+            font-size: 25px;
+            text-align: right;
+        }
+        .container .btn2 {
+            position: absolute;
+            top: 40%;
+            left: 35%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            background-color: #555;
+            color: white;
+            font-size: 16px;
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .container .img3 img{
+            width: 60%;
+
+        }
+        .container .page3{
+            position: absolute;
+            top: 25%;
+            right: 7%;
+            color: rgb(0, 0, 0);
+            font: bold;
+            font-size: 25px;
+            vertical-align: left;
+        }
+        .container .btn3 {
+            position: absolute;
+            top: 40%;
+            right: 24%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            background-color: #555;
+            color: white;
+            font-size: 16px;
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .pic1 {
+            position: relative;
+            width: 100%;
+        }
+        .pic1 img{
+            width: 50%;
+        }
+        .pic1 .h2{
+            position: absolute;
+            top: 30%;
+            right: 10%;
+
+        }
+        .pic1 .h2 p{
+            font-size: 20px;
+        }
+        .pic2 {
+            position: relative;
+            width: 100%;
+        }
+        .pic2 img{
+            margin-left: 800px;
+            width: 40%;
+        }
+        .pic2 .h2{
+            position: absolute;
+            top: 15%;
+            left: 5%;
+        }
+        .pic2 .h2 p{
+            font-size: 20px;
+        }
+        .pic3 {
+            position: relative;
+            width: 100%;
+        }
+        .pic3 img{
+            width: 40%;
+        }
+        .pic3 .h2{
+            position: absolute;
+            top: 30%;
+            right: 10%;
+
+        }
+        .pic3 .h2 p{
+            font-size: 20px;
+        }
